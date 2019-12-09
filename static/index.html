@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>容易网素材管理</title>
+<link rel="shortcut icon" href="#"/>
+</head>
+<body>
+<section id="app">
+	<!-- <a href="ryMaterial:?type=1&maxSize=200000000">上传文件</a> -->
+	<input type="file" accept=".mp4,.mov,.avi,.jpg,.jpeg,.png,.gif,.mp3" onchange="fileChange(this)" />
+
+	<a id="url" target="_blank"></a>
+</section>
+<script>
+var $url = document.getElementById('url')
+
+function fileChange(obj) {
+	var { files } = obj
+	// window.open(`ryMaterial:?type=1&url=${}`)
+	upfile(files[0], obj)
+}
+
+function upfile(file, ipt) {
+	var form = new FormData()
+	var xhr  = new XMLHttpRequest()
+	xhr.open('post', 'http://127.0.0.1:4099/upload' , true)
+	xhr.onreadystatechange = function () {
+		if (this.readyState === 4) {
+			var { responseText } = this,
+				res = JSON.parse(responseText),
+				{ url } = res
+			$url.href = url
+			$url.innerHTML = url
+		}
+		// ipt.value = ''
+	}
+	form.append('file', file)
+	form.append('max_width', 1280)
+	xhr.send(form)
+	ipt.value = ''
+}
+</script>
+</body>
+</html>

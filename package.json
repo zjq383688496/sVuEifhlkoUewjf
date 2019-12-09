@@ -1,0 +1,22 @@
+{
+  "name": "videoencodeupload",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron --inspect=5858 ./app/main.dev.js"
+  },
+  "author": "zhuangjiaqi",
+  "license": "ISC",
+  "dependencies": {
+    "electron": "^7.1.2",
+    "electron-builder": "^21.2.0",
+    "koa": "^2.11.0",
+    "koa-body": "^4.1.1",
+    "koa-json": "^2.0.2",
+    "koa-route": "^3.2.0",
+    "koa-router": "^7.4.0",
+    "upyun": "^3.3.11",
+    "ws": "^7.2.0"
+  }
+}
